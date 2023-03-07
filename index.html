@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Command Prompt Website</title>
+	<style>
+		body {
+			background-color: #1c1c1c;
+			color: #fff;
+			font-family: monospace;
+		}
+		
+		.container {
+			margin: 20px auto;
+			width: 80%;
+			max-width: 800px;
+			text-align: center;
+		}
+		
+		.prompt {
+			display: flex;
+			align-items: center;
+			margin: 10px 0;
+			padding: 5px;
+			background-color: #fff;
+			color: #1c1c1c;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.3);
+		}
+		
+		.prompt input[type="text"] {
+			background-color: transparent;
+			border: none;
+			outline: none;
+			font-size: 16px;
+			width: 100%;
+			margin-left: 10px;
+			color: inherit;
+			font-family: inherit;
+		}
+		
+		.result {
+			margin: 10px 0;
+			padding: 10px;
+			background-color: #fff;
+			color: #1c1c1c;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.3);
+			display: none;
+		}
+		
+		.show {
+			display: block;
+		}
+		
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<p style="color: rgb(83, 186, 83); font-size: large;text-align: center;">Please command to know this man!</p>
+		<p style="text-align: center;"> About|| Blog || Portfolio || Contact</p>
+	</div>
+	<div class="container">
+		<div class="prompt">
+			<span>Command:&nbsp;</span>
+			<input type="text" id="command-input" placeholder="Type a command...">
+		</div>
+		
+		<div class="result" id="about">
+			<h2>About</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, nunc vel consectetur consequat, nunc tellus ullamcorper dolor, ut euismod velit arcu a velit.</p>
+		</div>
+		
+		<div class="result" id="portfolio">
+			<h2>Portfolio</h2>
+			<p>Here are some examples of my work:</p>
+			<ul>
+				<li>Project 1</li>
+				<li>Project 2</li>
+				<li>Project 3</li>
+			</ul>
+		</div>
+		
+		<div class="result" id="blog">
+			<h2>Blog</h2>
+			<p>Check out my latest blog posts:</p>
+			<ul>
+				<li>Post 1</li>
+				<li>Post 2</li>
+				<li>Post 3</li>
+			</ul>
+		</div>
+		
+		<div class="result" id="contact">
+			<h2>Contact</h2>
+			<p>You can reach me at:</p>
+			<ul>
+				<li>Email: info@example.com</li>
+				<li>Phone: 555-555-5555</li>
+			</ul>
+		</div>
+	</div>
+	
+	<script>
+		// Get the command input and all result elements
+		const commandInput = document.getElementById('command-input');
+		const results = document.querySelectorAll('.result');
+		
+		// Add event listener for the command input
+		commandInput.addEventListener('keydown', (event) => {
+			if (event.keyCode === 13) { // Enter key pressed
+				const command = commandInput.value.trim().toLowerCase();
+				let resultFound = false;
+				
+				// Loop through all results and hide them by default
+				results.forEach((result) => {
+					result.classList.remove('show');
+					result.classList.add('hide');
+					
+					// If the command matches the result ID, show the result
+					if (result.id === command) {
+						result.classList.remove('hide');
+						result.classList.add('show');
+						resultFound = true;
+					}
+				});
+				
+				// If no result was found, display an error message
+				if (!resultFound) {
+					alert('Command not recognized. Please try again.');
+				}
+				
+				// Clear the command input
+				commandInput.value = '';
+			}
+		});
+	</script>
+
+</body>
+</html>
+
